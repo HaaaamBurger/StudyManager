@@ -1,11 +1,11 @@
 package org.studymanager.main.model.user;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import jakarta.validation.constraints.Pattern;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy;
+import lombok.experimental.FieldDefaults;
 import org.studymanager.main.common.UserRole;
 
 import java.time.LocalDateTime;
@@ -13,24 +13,23 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-@JsonView(SnakeCaseFieldNamingStrategy.class)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserResponse {
-    private String id;
+    String id;
 
-    @Pattern(regexp = "[A-Z][a-z]+",
-            message = "must start with a capital letter followed by one or more lowercase letters")
-    private String firstName;
+    @JsonProperty("first_name")
+    String firstName;
 
-    @Pattern(regexp = "[A-Z][a-z]+",
-            message = "Must start with a capital letter followed by one or more lowercase letters")
-    private String lastName;
+    @JsonProperty("last_name")
+    String lastName;
 
-    @Pattern(regexp = "[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}", message = "Must be a valid e-mail address")
-    private String email;
+    String email;
 
-    private UserRole role;
+    UserRole role;
 
-    private LocalDateTime createdAt;
+    @JsonProperty("created_at")
+    LocalDateTime createdAt;
 
-    private LocalDateTime updatedAt;
+    @JsonProperty("updated_at")
+    LocalDateTime updatedAt;
 }

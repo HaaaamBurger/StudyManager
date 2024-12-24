@@ -1,6 +1,6 @@
 package org.studymanager.main.services.impl;
 
-import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
         boolean isUserExists = isUserExists(email);
 
         if (isUserExists) {
-            throw new EntityNotFoundException("User by email " + email + " wasn't found.");
+            throw new EntityExistsException("User with email: " + email + " already exists.");
         }
 
         user.setCreatedAt(LocalDateTime.now());
