@@ -13,7 +13,7 @@ public class TeacherServiceUtils {
 
   public Teacher readById(String id) {
     return teacherRepository
-            .findById(id)
+            .readById(id)
             .orElseThrow(() -> new UsernameNotFoundException(
                     "Teacher by id " + id + " wasn't found."
             ));

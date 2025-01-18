@@ -23,7 +23,7 @@ import java.util.Collections;
 
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @Entity
 @SuperBuilder
 @NoArgsConstructor
@@ -36,7 +36,7 @@ public class Student extends UserEntity implements UserDetails {
   String email;
 
   @Pattern(
-          regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$\n",
+          regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
           message = "Must be a valid password"
   )
   @Column(nullable = false)

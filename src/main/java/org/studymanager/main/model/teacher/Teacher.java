@@ -33,10 +33,10 @@ public class Teacher extends UserEntity implements UserDetails {
   @Column(unique = true, nullable = false, length = 50)
   String email;
 
-  //    @Pattern(
-  //      regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$\n",
-  //      message = "Must be a valid password"
-  //      )
+  @Pattern(
+          regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
+          message = "Must be a valid password"
+  )
   @Column(nullable = false)
   String password;
 

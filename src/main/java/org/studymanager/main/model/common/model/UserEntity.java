@@ -15,6 +15,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import org.studymanager.main.common.UserType;
 import java.io.Serial;
@@ -26,6 +27,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @SuperBuilder
+@ToString
 @NoArgsConstructor
 @EqualsAndHashCode
 @MappedSuperclass
@@ -42,15 +44,15 @@ public abstract class UserEntity implements Serializable {
   @Column(name = "first_name")
   String firstName;
 
-  @Enumerated(EnumType.STRING)
-  @JsonProperty("user_type")
-  @Column(name = "user_type")
-  UserType userType;
-
   @Pattern(regexp = "[A-Z][a-z]+",
           message = "Must start with a capital letter followed by one or more lowercase letters")
   @Column(name = "last_name")
   String lastName;
+
+  @Enumerated(EnumType.STRING)
+  @JsonProperty("user_type")
+  @Column(name = "user_type")
+  UserType userType;
 
   @EqualsAndHashCode.Exclude
   @JsonProperty("created_at")
