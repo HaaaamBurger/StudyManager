@@ -24,6 +24,7 @@ public class StudentRepositoryTest {
 
   private Student student;
 
+
   @BeforeEach
   public void setUp() {
     this.student = Student.builder()
